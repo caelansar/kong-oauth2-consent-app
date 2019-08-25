@@ -116,6 +116,22 @@ $ curl -i -X POST \
   --data 'code=XXX' --insecure
 ```
 
+Kong also support password credentials grant which is deactivated by default at oauth2 plugin, activate it:
+```bash
+$ curl -XPATCH localhost:8001/plugins/{plugin_id} \
+  --data "config.enable_password_grant=true"
+```
+
+```bash
+$ curl -i https://localhost:8443/myapi/oauth2/token \
+  --data "client_id=XXX" \
+  --data "client_secret=XXX" \
+  --data "grant_type=password" \
+  --data "scope=email" \
+  --data "provision_key=XXX" \
+  --data "authenticated_userid=XXX"
+```
+
 When the access token expires a new token can be obtained using the refresh token.
 
 ```bash
