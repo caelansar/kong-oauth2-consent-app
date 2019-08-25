@@ -14,6 +14,13 @@ The following sequence diagram shows how the role of "Authorization Server" is s
 
 ## Usage
 
+#### version
+   
+   ```bash
+   psql (11.3 (Debian 11.3-1.pgdg90+1))
+   kong 1.1.2
+   ```    
+
 #### Configure the environment
 
 1. Install the sample consent app.
@@ -46,7 +53,9 @@ The following sequence diagram shows how the role of "Authorization Server" is s
    $ curl -i -X POST \
      --url http://localhost:8001/services/test-service/plugins \
      --data 'name=oauth2' \
-     --data 'config.scopes=email,phone,address' \
+     --data 'config.scopes=email' \
+     --data 'config.scopes=phone' \
+     --data 'config.scopes=address' \
      --data 'config.mandatory_scope=true' \
      --data 'config.enable_authorization_code=true'
    ```
